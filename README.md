@@ -60,7 +60,7 @@ An Example Player:
 
 ```javascript
 {
-  name: "shannonshopper",
+  name: "Lebron James",
   born: 12/30/1984,
   nationality: "USA",
   position: "Small Forward",
