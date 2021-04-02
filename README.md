@@ -36,6 +36,7 @@ An Example Team:
 {
   team_name: "Los Angeles Lakers",
   arena_stadium: "Staples Center",
+  players: // Embedded Players as an array
   location: "Los Angeles, California",
   founded: 1947
 }
@@ -78,17 +79,34 @@ An Example Player:
 
 (___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
-/list/create - page for creating a new shopping list
+/ - homepage
 
-![list create](documentation/list-create.png)
+![list create](documentation/home.png)
 
-/list - page for showing all shopping lists
+/login - login page
 
-![list](documentation/list.png)
+![list](documentation/login.png)
 
-/list/slug - page for showing specific shopping list
+/register - register page
 
-![list](documentation/list-slug.png)
+![list](documentation/register.png)
+
+/team - page that displays team information
+
+![list](documentation/team.png)
+
+/team/roster/ - page that displays team roster
+
+![list](documentation/team-roster.png)
+
+/team/roster/add - page that allows user to add players
+
+![list](documentation/team-roster-add.png)
+
+team/roster/player-name - page that displays player information
+
+![list](documentation/team-roster-player.png)
+
 
 ## Site map
 
