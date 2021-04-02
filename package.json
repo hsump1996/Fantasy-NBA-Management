@@ -1,0 +1,25 @@
+{
+  "name": "hsump1996-final-project",
+  "version": "1.0.0",
+  "description": "* See [example milestone #01](https://github.com/nyu-csci-ua-0480-008-spring-2017/final-project-example) * Add images to your repository and link / display with markdown",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyu-csci-ua-0480-034-spring-2021/hsump1996-final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nyu-csci-ua-0480-034-spring-2021/hsump1996-final-project/issues"
+  },
+  "homepage": "https://github.com/nyu-csci-ua-0480-034-spring-2021/hsump1996-final-project#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^7.23.0",
+    "eslint-plugin-mocha": "^8.1.0",
+    "mocha": "^8.3.2"
+  }
+}

@@ -47,7 +47,7 @@ An Example Team with Embedded Players:
 ```javascript
 {
   team_name: // a reference to a User object
-  arena_stadium: "Breakfast foods",
+  arena_stadium: "Staples Center",
   players: [
     { name: "Lebron James", born: 12/30/1984, nationality: "USA", position: "Small Forward", height: "6 ft 9 in", weight: "113 kg"},
     { name: "Carmelo Anthony", born: 02/10/1982, nationality: "USA", position: "Center", height: "6 ft 9 in", weight: "120 kg"},
@@ -107,8 +107,6 @@ team/roster/player-name - page that displays player information
 
 ## Site map
 
-(___TODO__: draw out a site map that shows how pages are related to each other_)
-
 
 ![list](documentation/sitemap.png)
 
@@ -116,31 +114,28 @@ team/roster/player-name - page that displays player information
 
 ## User Stories or Use Cases
 
-(___TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
-
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+1. As non-registered user, I can register a new account with the site
+2. As a user, I can log in to the site
+3. As a user, I can create a new team
+4. As a user, I can view all of the information regarding the team
+5. As a user, I can view the roster(players) of the team
+6. As a user, I can add players to the roster
 
 ## Research Topics
 
-(___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
-
 * (5 points) Integrate user authentication
     * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+    * Will be setting up username and password with passport
+* (2 points) Use a CSS framework throughout your site, use a reasonable of customization of the framework (don't just use stock Bootstrap - minimally configure a theme):
+    * I'm going to be using Bootstrap 
+    * Bootstrap
+    * Create a specific theme for the entire pages
+* (3 points) Unit testing with JavaScript
+    * I'm going to be using Mocha to set up unit test
+    * Link to testing code in repository will be added
+    * Will be testing for variety of things (Login, Register, Authentication, etc)
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+10 points total out of 8 required points 
 
 
 ## [Link to Initial Main Project File](app.js) 
@@ -152,4 +147,5 @@ team/roster/player-name - page that displays player information
 (___TODO__: list any tutorials/references/etc. that you've based your code off of_)
 
 1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+2. [Bootstrap docs](https://getbootstrap.com/) - (add link to source code that was based on this)
+2. [Mocha docs](https://github.com/mochajs/mocha) - (add link to source code that was based on this)
