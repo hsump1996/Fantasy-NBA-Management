@@ -73,11 +73,8 @@ An Example Player:
 
 ## [Link to Commented First Draft Schema](db.js) 
 
-(___TODO__: create a first draft of your Schemas in db.js and link to it_)
 
 ## Wireframes
-
-(___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
 / - homepage
 
@@ -112,7 +109,10 @@ team/roster/player-name - page that displays player information
 
 (___TODO__: draw out a site map that shows how pages are related to each other_)
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+
+![list](documentation/sitemap.png)
+
+
 
 ## User Stories or Use Cases
 
