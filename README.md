@@ -10,7 +10,7 @@ The content below is an example project proposal / requirements document. Replac
 
 Fantasy NBA Management is a web application created for NBA fans. Users can create their own imaginary NBA team. First users will have to register their account. After they login, users can create their team and add players into the team. 
 
-Users can decide on the attributes of both the team and the players. For example, users can decide on the team name, location of the team, and more. Users can also add/delete playyers. 
+Users can decide on the attributes of both the team and the players. For example, users can decide on the team name, location of the team, and more. Users can also add/delete players. 
 
 
 ## Data Model
