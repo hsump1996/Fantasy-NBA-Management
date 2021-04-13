@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // * our site requires authentication...
 // * so users have a username and password
 // * they also can have 1 Team
-const User = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     // username provided by authentication plugin
     // password hash provided by authentication plugin
     team:  { type: mongoose.Schema.Types.ObjectId, ref: 'Team' }
@@ -13,7 +13,7 @@ const User = new mongoose.Schema({
 
 // NBA team in a user
 // * each Team must have a related user
-const Team = new mongoose.Schema({
+const TeamSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
     team_name: {type: String, required: true},
     arena_stadium: {type: String, required: true},
@@ -22,7 +22,7 @@ const Team = new mongoose.Schema({
 });
 
 // Player
-const Player = new mongoose.Schema({
+const PlayerSchema = new mongoose.Schema({
     name: {type: String, required: true},
     born: {type: Date, required: true},
     nationality: {type: String, required: true},
@@ -55,9 +55,8 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
 
 }
 
-
-
-
 mongoose.model('User', UserSchema);
-mongoose.model('Team', ArticleSchema);
+mongoose.model('Team', TeamSchema);
+mongoose.model('Player', PlayerSchema);
 
+mongoose.connect(dbconf);
