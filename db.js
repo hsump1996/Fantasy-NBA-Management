@@ -1,5 +1,7 @@
 // 1ST DRAFT DATA MODEL
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+
 
 // users
 // * our site requires authentication...
@@ -55,8 +57,16 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
 
 }
 
+UserSchema.plugin(passportLocalMongoose);
+
 mongoose.model('User', UserSchema);
 mongoose.model('Team', TeamSchema);
 mongoose.model('Player', PlayerSchema);
+
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
+
 
 mongoose.connect(dbconf);
