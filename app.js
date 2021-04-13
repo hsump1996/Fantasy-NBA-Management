@@ -5,15 +5,14 @@ const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const app = express();
+
 app.set('view engine', 'hbs');
 
 
 const UserSchema = mongoose.model('User');
 const PlayerSchema = mongoose.model('Player');
 const TeamSchema = mongoose.model('Team');
-
-
-const app = express();
 
 // enable sessions
 const session = require('express-session');
@@ -83,4 +82,4 @@ app.post('/team/roster/add', (req, res) => {
 
 
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

@@ -17,7 +17,7 @@ const TeamSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
     team_name: {type: String, required: true},
     arena_stadium: {type: String, required: true},
-    players: [Player],
+    players: { type: mongoose.Schema.Types.ObjectId, ref: 'Player' },
     founded: {type: Number, required: true}
 });
 
