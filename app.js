@@ -26,6 +26,7 @@ app.use(passport.initialize());
 //Enables persistent login sessions
 app.use(passport.session());
 
+passport.use(UserSchema.createStrategy());
 passport.serializeUser(UserSchema.serializeUser());
 passport.deserializeUser(UserSchema.deserializeUser());
 
