@@ -3,10 +3,8 @@ require('./db');
 require('./auth');
 
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const LocalStrategy = require('passport-local').Strategy;
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -20,41 +18,24 @@ const UserSchema = mongoose.model('User');
 const PlayerSchema = mongoose.model('Player');
 const TeamSchema = mongoose.model('Team');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-
 
 // enable sessions
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const sessionOptions = {
-    secret: 'secret cookie thang (store this elsewhere!)',
-    resave: true,
-    saveUninitialized: true
+	secret: 'secret cookie thang (store this elsewhere!)',
+	resave: true,
+	saveUninitialized: true
 };
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session(sessionOptions));
 
 
-//Uses the LocalStrategy for username/password authentication
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    UserSchema.findOne({username: username}, function(err, user) {
-      if (err) {
-        console.log(err);
-        return done(err);
-      }
-
-      if (!user) {
-        return done(null, false, {message: 'Wrong username'});
-
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, {message: 'Wrong password.'});
-
-      }
-      return done(null,user);
-    });
-  }
-));
+passport.use(new LocalStrategy(UserSchema.authenticate()));
+passport.serializeUser(UserSchema.serializeUser());
+passport.deserializeUser(UserSchema.deserializeUser());
 
 //Starts passpoort
 app.use(passport.initialize());
@@ -62,9 +43,9 @@ app.use(passport.initialize());
 //Enables persistent login sessions
 app.use(passport.session());
 
-passport.use(UserSchema.createStrategy());
-passport.serializeUser(UserSchema.serializeUser());
-passport.deserializeUser(UserSchema.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // body parser setup
 app.use(express.urlencoded({ extended: false }));
@@ -95,17 +76,51 @@ app.get('/', (req, res) => {
 
 });
 
+
+app.get('/addTeam', (req, res) => {
+
+  res.render('team-add');
+
+});
+
+
+app.post('/addTeam', (req, res) => {
+
+  const playersList = [];
+  
+  
+  const team = new TeamSchema({user: req.user['_id'], team_name: req.body.team_name, arena_stadium: req.body.arena_stadium, playersList, founded: req.body.founded});
+
+  team.save(err => {
+      
+    //Case where there's an error and re-renders the article-add.hbs
+      if (err) {
+          console.log(err);          
+      //Case where the team saved successfully and redirected to the main page
+      } else {
+            res.redirect('/');
+      }
+  });  
+});
+
+
+
 app.get('/login', function(req, res) {
   res.render('login');
 });
 
 
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true })
-);
-
+app.post('/login', function(req,res,next) {
+  passport.authenticate('local', function(err,user) {
+    if(user) {
+      req.logIn(user, function(err) {
+        res.redirect('/');
+      });
+    } else {
+      res.render('login', {message:'Your login or password is incorrect.'});
+    }
+  })(req, res, next);
+});
 
 
 app.get('/register', function(req, res) {
@@ -126,6 +141,7 @@ app.post('/register', function(req, res) {
     }
   });   
 });
+
 
 
 app.get('/team/roster', (req, res) => {

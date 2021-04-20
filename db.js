@@ -8,20 +8,11 @@ const passportLocalMongoose = require('passport-local-mongoose');
 // * so users have a username and password
 // * they also can have 1 Team
 const UserSchema = new mongoose.Schema({
-    // username provided by authentication plugin
-    // password hash provided by authentication plugin
+    username: String,
+    password: String,
     team:  { type: mongoose.Schema.Types.ObjectId, ref: 'Team' }
 });
 
-// NBA team in a user
-// * each Team must have a related user
-const TeamSchema = new mongoose.Schema({
-    user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-    team_name: {type: String, required: true},
-    arena_stadium: {type: String, required: true},
-    players: { type: mongoose.Schema.Types.ObjectId, ref: 'Player' },
-    founded: {type: Number, required: true}
-});
 
 // Player
 const PlayerSchema = new mongoose.Schema({
@@ -32,6 +23,17 @@ const PlayerSchema = new mongoose.Schema({
     height: {type: Number, required: true},
     weight: {type: Number, required: true}
 });
+
+// NBA team in a user
+// * each Team must have a related user
+const TeamSchema = new mongoose.Schema({
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    team_name: {type: String, required: true},
+    arena_stadium: {type: String, required: true},
+    players: [PlayerSchema],
+    founded: {type: Number, required: true}
+});
+
 
 // TODO: add remainder of setup for slugs, connection, registering models, etc. below
 

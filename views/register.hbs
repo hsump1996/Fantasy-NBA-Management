@@ -1,16 +1,27 @@
 <h2>Register</h2>
+{{#if message}}
+<div class="error">{{ message }}</div>
+{{/if}}
 <form method="POST" action="register">
 	<div>
 		<label for="username">Username:</label>
 		<input type="text" name="username" value="">
 	</div>
 	<div>
-		<label for="email">Email:</label> 
-		<input type="email" name="email" value="">
-	</div>
-	<div>
 		<label for="password">Password:</label>
 		<input type="password" name="password" value="">
+	</div>
+    <div>
+		<label for="teamName">Team Name:</label>
+		<input type="text" name="teamName" value="">
+	</div>
+    <div>
+		<label for="stadium">Stadium/Arena:</label>
+		<input type="text" name="stadium" value="">
+	</div>
+    <div>
+		<label for="founded">Founded:</label>
+		<input type="number" name="founded" value="">
 	</div>
 	<div><input type="submit" value="Register"></div>
 </form>
