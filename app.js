@@ -3,6 +3,8 @@ require('./db');
 require('./auth');
 
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -20,15 +22,6 @@ const TeamSchema = mongoose.model('Team');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Starts passpoort
-app.use(passport.initialize());
-
-//Enables persistent login sessions
-app.use(passport.session());
-
-passport.use(UserSchema.createStrategy());
-passport.serializeUser(UserSchema.serializeUser());
-passport.deserializeUser(UserSchema.deserializeUser());
 
 // enable sessions
 const session = require('express-session');
@@ -41,6 +34,38 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 
 
+//Uses the LocalStrategy for username/password authentication
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    UserSchema.findOne({username: username}, function(err, user) {
+      if (err) {
+        console.log(err);
+        return done(err);
+      }
+
+      if (!user) {
+        return done(null, false, {message: 'Wrong username'});
+
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, {message: 'Wrong password.'});
+
+      }
+      return done(null,user);
+    });
+  }
+));
+
+//Starts passpoort
+app.use(passport.initialize());
+
+//Enables persistent login sessions
+app.use(passport.session());
+
+passport.use(UserSchema.createStrategy());
+passport.serializeUser(UserSchema.serializeUser());
+passport.deserializeUser(UserSchema.deserializeUser());
+
 // body parser setup
 app.use(express.urlencoded({ extended: false }));
 
@@ -48,7 +73,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//req.user will be in the contex of every template
+//req.user will be in the context of every template
 app.use(function(req, res, next){
 	res.locals.user = req.user;
 	next();
@@ -68,6 +93,38 @@ app.get('/', (req, res) => {
     }
   });
 
+});
+
+app.get('/login', function(req, res) {
+  res.render('login');
+});
+
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true })
+);
+
+
+
+app.get('/register', function(req, res) {
+  
+  res.render('register');
+
+});
+
+app.post('/register', function(req, res) {
+  UserSchema.register(new UserSchema({username:req.body.username}), 
+      req.body.password, function(err, user){
+    if (err) {
+      res.render('register',{message:'Your registration information is not valid'});
+    } else {
+      passport.authenticate('local')(req, res, function() {
+        res.redirect('/');
+      });
+    }
+  });   
 });
 
 

@@ -8,6 +8,12 @@
 <body>
 	<header>
 		<a href= "/">Home</a>
+		{{#if user}}
+		<p>Logged in as {{user.username}}</p>
+		{{else}}
+		<a href= "/login">Login</a> or
+		<a href= "/register">Register</a>
+		{{/if}}
 	</header>
 	{{{body}}}
 </body>
