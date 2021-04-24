@@ -2,16 +2,20 @@
 {{#if message}}
 <div class="error">{{ message }}</div>
 {{/if}}
+
 <form method="POST" action="login">
-	<div>
-		<label for="username">Username:</label>
-		<input type="text" name="username" value="">
-	</div>
-	<div>
-		<label for="password">Password:</label> 
-		<input type="password" name="password" value="">
-	</div>
-	<div>
-		<input type="submit" value="Login">
-	</div>
+  <div class="row mb-3">
+    <label for="username" class="col-sm-2 col-form-label">Username:</label>
+    <div class="col-sm-3">
+      <input type="text" name="username" class="form-control" id="username">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="password" class="col-sm-2 col-form-label">Password:</label>
+    <div class="col-sm-3">
+      <input type="password" name="password" class="form-control" id="password">
+    </div>
+  </div>
+
+  <input class="btn btn-primary" type="submit" value="Login">
 </form>
