@@ -1,6 +1,9 @@
 // 1ST DRAFT DATA MODEL
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const URLSlugs = require('mongoose-url-slugs');
+const Schema = mongoose.Schema;
+
 
 
 // users
@@ -21,7 +24,9 @@ const PlayerSchema = new mongoose.Schema({
     nationality: {type: String, required: true},
     position: {type: String, required: true},
     height: {type: Number, required: true},
-    weight: {type: Number, required: true}
+    weight: {type: Number, required: true},
+    team_name:  { type: String, required: true},
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
 // NBA team in a user
@@ -59,6 +64,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
 
 }
 
+TeamSchema.plugin(URLSlugs("team_name"));
 UserSchema.plugin(passportLocalMongoose);
 
 mongoose.model('User', UserSchema);
