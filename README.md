@@ -123,19 +123,15 @@ team/roster/player-name - page that displays player information
 
 ## Research Topics
 
-* (5 points) Integrate user authentication
+* (6 points) Integrate user authentication
     * I'm going to be using passport for user authentication
     * Will be setting up username and password with passport
 * (2 points) Use a CSS framework throughout your site, use a reasonable of customization of the framework (don't just use stock Bootstrap - minimally configure a theme):
     * I'm going to be using Bootstrap 
     * Bootstrap
     * Create a specific theme for the entire pages
-* (3 points) Unit testing with JavaScript
-    * I'm going to be using Mocha to set up unit test
-    * Link to testing code in repository will be added
-    * Will be testing for variety of things (Login, Register, Authentication, etc)
 
-10 points total out of 8 required points 
+8 points total out of 8 required points 
 
 
 ## [Link to Initial Main Project File](app.js) 
@@ -145,4 +141,3 @@ team/roster/player-name - page that displays player information
 
 1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
 2. [Bootstrap docs](https://getbootstrap.com/) - (add link to source code that was based on this)
-2. [Mocha docs](https://github.com/mochajs/mocha) - (add link to source code that was based on this)

@@ -9,6 +9,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+const higherOrderFunction = require("./function.js");
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -22,6 +24,7 @@ const TeamSchema = mongoose.model('Team');
 // enable sessions
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const { compareFunction } = require('./function.js');
 const sessionOptions = {
 	secret: 'secret cookie thang (store this elsewhere!)',
 	resave: true,
@@ -91,8 +94,19 @@ app.post('/addTeam', (req, res) => {
   
   const team = new TeamSchema({user: req.user['_id'], team_name: req.body.team_name, arena_stadium: req.body.arena_stadium, playersList, founded: req.body.founded});
 
+  function compareFunction(array) {
+    
+    if (array.length > 0) {
+
+      return true;
+
+    } else {
+      return false;
+    }
+  }
+
   TeamSchema.find({user: req.user['_id']}, function(err, teams){
-    if (teams.length > 0){
+    if (higherOrderFunction.isBiggerThanOne(teams, compareFunction)){
 
       res.render('error');
 
@@ -204,13 +218,31 @@ app.get('/my-team', (req, res) => {
 
 app.get('/my-team/roster', (req, res) => {
 
-  PlayerSchema.find({user: req.user['_id']}, (err, player) => {
+  PlayerSchema.find({user: req.user['_id']}, (err, players) => {
 
     if (err) {
         console.log(err);
     
     } else {
-        res.render('roster', {'player': player});
+
+      const height = players.map(e => e.height);
+
+      //Converts height to inch
+      for (let i = 0; i < height.length; i++) {
+
+        height[i]= height[i] / 2.54;
+
+      };
+
+      //Converts weight to lbs
+      const weight = players.map(e => e.weight);
+
+      for (let i = 0; i < weight.length; i++) {
+
+        weight[i]= weight[i] * 2.20462;
+        
+      };
+      res.render('roster', {'player': players, 'height': height, 'weight': weight});
     }
   });
 });
@@ -226,13 +258,12 @@ app.get('/my-team/roster/add', (req, res) => {
 
 app.post('/my-team/roster/add', (req, res) => {
 
-      //Create a new Article and associate it with a user
+      //Create a new Player
     const player = new PlayerSchema({name: req.body.name, born: req.body.born, nationality: req.body.nationality, position: req.body.position, height: req.body.height, 
     weight: req.body.weight, team_name: req.body.team_name, user: req.user['_id']});
 
     player.save(err => {
         
-      //Case where there's an error and re-renders the article-add.hbs
         if (err) {
             console.log(err);          
       
