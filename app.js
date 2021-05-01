@@ -117,17 +117,33 @@ app.get('/team/:slug', (req, res) => {
   //Gets the value of query string parameters
   const slug = req.params.slug;
 
-  TeamSchema.findOne({slug: slug}).populate('user').exec((err, team) => {
+  TeamSchema.find({slug: slug}).populate('user').exec((err, team) => {
 
       if (err) {
           console.log(err);
       
       } else {
-          res.render('team-detail', {'team_name': team.team_name, 'arena_stadium': team.arena_stadium, 'founded': team.founded});
+        console.log(team);
+        res.render('team-detail', {'team': team});
       }
   });
 
 });
+
+app.get('/my-team', (req, res) => {
+
+  TeamSchema.find({user: req.user['_id']}, function(err, team, count) {
+    
+    if (err) {
+      console.log(err);
+      
+    } else {
+        res.render('my-team', {'team': team});
+    }
+  });
+});
+
+
 
 
 app.get('/login', function(req, res) {
@@ -177,7 +193,6 @@ app.get('/my-team', (req, res) => {
       console.log(err);
       
     } else {
-        console.log(team);
         res.render('my-team', {'team': team});
     }
   });

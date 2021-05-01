@@ -1,4 +1,60 @@
-<h1>{{team_name}}</h1>
+    <!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<p>Stadium: {{arena_stadium}}</p>
-<p>Founded In: {{founded}}</p>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+        .themed-grid-col {
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        background-color: rgba(86, 61, 124, .15);
+        border: 1px solid rgba(86, 61, 124, .2);
+        }
+
+        .themed-container {
+        padding: .75rem;
+        margin-bottom: 1.5rem;
+        background-color: rgba(0, 123, 255, .15);
+        border: 1px solid rgba(0, 123, 255, .2);
+        }
+
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+
+
+<div class="jumbotron">
+
+{{#each team}}
+    <h1>Team Name: {{team_name}}</h1>
+
+    <p>Stadium: {{arena_stadium}}</p>
+
+    <p>Founded In: {{founded}}</p>
+    
+    {{#each players}}
+    <p>Name: {{name}}</p>
+    <p>Born: {{born}}</p>
+    <p>Nationality: {{nationality}}</p>
+    <p>Position: {{position}}</p>
+    <p>Height: {{height}}</p>
+    <p>Weight: {{weight}}</p>
+    <p>Team Name: {{team_name}}</p>
+    {{/each}}
+
+{{/each}}
+</div>

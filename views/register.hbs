@@ -1,7 +1,50 @@
+    <!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+        .themed-grid-col {
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        background-color: rgba(86, 61, 124, .15);
+        border: 1px solid rgba(86, 61, 124, .2);
+        }
+
+        .themed-container {
+        padding: .75rem;
+        margin-bottom: 1.5rem;
+        background-color: rgba(0, 123, 255, .15);
+        border: 1px solid rgba(0, 123, 255, .2);
+        }
+
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+
+
+
 <h2>Register</h2>
 {{#if message}}
 <div class="error">{{ message }}</div>
 {{/if}}
+
+<div class="jumbotron">
+
 <form method="POST" action="register">
 	<div>
 		<label for="username">Username:</label>
@@ -26,5 +69,4 @@
 	<input class="btn btn-primary" type="submit" value="Register">
 </form>
 
-
-
+</div>

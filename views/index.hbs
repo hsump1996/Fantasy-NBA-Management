@@ -36,13 +36,12 @@
     <!-- Custom styles for this template -->
     <link href="grid.css" rel="stylesheet">
 
-<div class="container" id="containers">
-    <hr class="my-4">
-    <h2 class="mt-4">Here are the NBA Teams in the League</h2>
-</div>
 
-{{#each team}}
+<div class="jumbotron">
+  <h1 class="display-4">Here are the NBA Teams in the League</h1>
+  <p class="lead">Click on the Teams to see detailed information</p>
+  <hr class="my-4">
+  {{#each team}}
 <div class="container-fluid themed-container"><a href="/team/{{this.slug}}">{{this.team_name}} </div>
-{{/each}}
-
-
+  {{/each}}
+</div>
